@@ -31,6 +31,7 @@ public class Parser {
     }
     
     /**
+     * 
      * Parses the first row of the excel sheet to get all the column names
      * and their indices
      * @return a map containing key-value pairs of columnNames-indices
@@ -41,12 +42,13 @@ public class Parser {
         Workbook workbook = WorkbookFactory.create(file);
         Sheet sheet =  workbook.getSheetAt(0);
         Row firstRow = sheet.getRow(0);
-        int index = 0;
+        
         for(Cell cell : firstRow) {
             String cellValue = cell.getStringCellValue();
-            courseMap.put(cellValue, index);
-            index++;
+            int cellIndex = cell.getColumnIndex();
+            courseMap.put(cellValue, cellIndex);
         }
+        
         System.out.println(courseMap);
         return courseMap;
     }
