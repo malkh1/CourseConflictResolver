@@ -1,6 +1,7 @@
 package com.sysc4907.courseconflictresolver;
 
 import jakarta.persistence.Entity;
+import java.util.Map;
 
 /**
  * This class defines every single column in the database
@@ -11,8 +12,12 @@ import jakarta.persistence.Entity;
 @Entity
 public class CourseRecords {
 
-
-    public CourseRecords() {}
+    private Map<String, String> dataMap;
+    
+    
+    public CourseRecords() {
+        super();
+    }
     
     private String FAC;
     private String DEPT;
