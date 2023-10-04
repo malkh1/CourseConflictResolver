@@ -1,0 +1,37 @@
+-------------------------- Notes for Parsing --------------------------------
+
+!!!!!!IMPORTANT!!!!!!
+
+Make sure all filtering is done by COLUMN NAME and not COLUMN POSITION
+
+ASSUMPTIONS TO TAKE INTO CONSIDERATION
+
+- The file format for course information will remain as an excel sheet.
+-
+
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+October 3rd, 2023 - 10:00PM
+
+Discussion to plan out how excel data will be parsed, organized, and implemented.
+
+PURPOSE OF PROJECT
+
+- Have a system that checks course schedules against school's overall schedule
+
+We will create one database table that holds all data in provided excel sheet. This will be done
+using APACHE POI, and a parsing script to add contents to database.
+
+A hashmap will be used to store column name data and position. This is preferable over a list
+approach to avoid having to iterate through the entire list to locate a specific cell.
+
+The parser must be constructed in a manner that allows to continue functioning properly in case
+new columns are added or existing columns are removed.
+
+
+
+
+
+
+
+
