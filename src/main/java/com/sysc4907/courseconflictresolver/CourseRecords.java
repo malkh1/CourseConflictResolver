@@ -1,6 +1,8 @@
 package com.sysc4907.courseconflictresolver;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
 import java.util.Map;
 
 /**
@@ -12,8 +14,9 @@ import java.util.Map;
 @Entity
 public class CourseRecords {
 
-    private Map<String, String> dataMap;
-    
+    @Id
+    @GeneratedValue
+    private Long Id;
     
     public CourseRecords() {
         super();
@@ -38,12 +41,12 @@ public class CourseRecords {
     private String LNK_CONN;
     private String INSTR_TYPE;
     private String DAYS;
-    private String START_TIME;
-    private String END_TIME;
+    private String STARTTIME;
+    private String ENDTIME;
     private String BLDG;
     private String ROOM;
-    private String START_DATE;
-    private String END_DATE;
+    private String STARTDATE;
+    private String ENDDATE;
     private String COMB_MAX_ENR;
     private String COMB_ACT_ENRL;
     private String MAX_ENR;
@@ -222,20 +225,20 @@ public class CourseRecords {
         this.DAYS = DAYS;
     }
 
-    public String getSTART_TIME() {
-        return START_TIME;
+    public String getSTARTTIME() {
+        return STARTTIME;
     }
 
-    public void setSTART_TIME(String START_TIME) {
-        this.START_TIME = START_TIME;
+    public void setSTARTTIME(String STARTTIME) {
+        this.STARTTIME = STARTTIME;
     }
 
-    public String getEND_TIME() {
-        return END_TIME;
+    public String getENDTIME() {
+        return ENDTIME;
     }
 
-    public void setEND_TIME(String END_TIME) {
-        this.END_TIME = END_TIME;
+    public void setENDTIME(String ENDTIME) {
+        this.ENDTIME = ENDTIME;
     }
 
     public String getBLDG() {
@@ -254,20 +257,20 @@ public class CourseRecords {
         this.ROOM = ROOM;
     }
 
-    public String getSTART_DATE() {
-        return START_DATE;
+    public String getSTARTDATE() {
+        return STARTDATE;
     }
 
-    public void setSTART_DATE(String START_DATE) {
-        this.START_DATE = START_DATE;
+    public void setSTARTDATE(String STARTDATE) {
+        this.STARTDATE = STARTDATE;
     }
 
-    public String getEND_DATE() {
-        return END_DATE;
+    public String getENDDATE() {
+        return ENDDATE;
     }
 
-    public void setEND_DATE(String END_DATE) {
-        this.END_DATE = END_DATE;
+    public void setENDDATE(String ENDDATE) {
+        this.ENDDATE = ENDDATE;
     }
 
     public String getCOMB_MAX_ENR() {

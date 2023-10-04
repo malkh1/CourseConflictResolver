@@ -76,7 +76,6 @@ public class Parser {
     public Map<String, String> getDataMap(Row row) throws IOException {
         Map<String, String> dataMap = new HashMap<>();
         
-        
             for(Cell cell : row) {
                 int cellIndex = cell.getColumnIndex();
                 String columnName = columnHeaderMap.get(cellIndex);
@@ -91,7 +90,8 @@ public class Parser {
                             cellValue = (cell.getDateCellValue()).toString();
      
                         } else {
-                            cellValue = String.valueOf(cell.getNumericCellValue());
+                            cellValue = 
+                                    String.valueOf(String.format("%.0f", cell.getNumericCellValue()));
                         }
                     }
 
