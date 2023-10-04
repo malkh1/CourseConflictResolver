@@ -2,9 +2,14 @@ package com.sysc4907.courseconflictresolver;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import org.apache.poi.ss.usermodel.Cell;
+import static org.apache.poi.ss.usermodel.CellType.STRING;
+import org.apache.poi.ss.usermodel.DateUtil;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -17,7 +22,7 @@ import org.apache.poi.ss.usermodel.WorkbookFactory;
  */
 public class Parser {
 
-    private Map<String, Integer> courseMap;
+    private Map<Integer, String> columnHeaderMap;
     
     private String filePath;
     
@@ -27,8 +32,20 @@ public class Parser {
      */
     public Parser(String filePath) {
         this.filePath = filePath;
-        courseMap = new LinkedHashMap<>();
+        columnHeaderMap = new LinkedHashMap<>();
     }
+    
+    /**
+     * helper function for opening the excel document
+     * @return the first sheet in the excel document
+     * @throws IOException error if the file is already open
+     */
+    public Sheet openFile() throws IOException {
+        File file = new File(filePath);
+        Workbook workbook = WorkbookFactory.create(file);
+        return workbook.getSheetAt(0);
+    }
+    
     
     /**
      * 
@@ -37,20 +54,54 @@ public class Parser {
      * @return a map containing key-value pairs of columnNames-indices
      * @throws IOException If excel file is currently being used, throw an IOException
      */
-    public Map<String, Integer> getCourseMap() throws IOException {
-        File file = new File(filePath);
-        Workbook workbook = WorkbookFactory.create(file);
-        Sheet sheet =  workbook.getSheetAt(0);
+    public Map<Integer, String> getColumnHeaderMap() throws IOException {
+        Sheet sheet =  openFile();
         Row firstRow = sheet.getRow(0);
         
         for(Cell cell : firstRow) {
             String cellValue = cell.getStringCellValue();
             int cellIndex = cell.getColumnIndex();
-            courseMap.put(cellValue, cellIndex);
+            columnHeaderMap.put(cellIndex, cellValue);
         }
         
-        System.out.println(courseMap);
-        return courseMap;
+        System.out.println(columnHeaderMap);
+        return columnHeaderMap;
+    }
+    
+    /**
+     * 
+     * @return
+     * @throws IOException 
+     */
+    public Map<String, String> getDataMap(Row row) throws IOException {
+        Map<String, String> dataMap = new HashMap<>();
+        
+        
+            for(Cell cell : row) {
+                int cellIndex = cell.getColumnIndex();
+                String columnName = columnHeaderMap.get(cellIndex);
+                String cellValue;
+                switch (cell.getCellType()) {
+                    case STRING -> {
+                        cellValue = cell.getStringCellValue();
+                    }
+
+                    case NUMERIC -> {
+                        if (DateUtil.isCellDateFormatted(cell)) {
+                            cellValue = (cell.getDateCellValue()).toString();
+     
+                        } else {
+                            cellValue = String.valueOf(cell.getNumericCellValue());
+                        }
+                    }
+
+                    default -> {throw new AssertionError();}    
+                }
+                dataMap.put(columnName, cellValue);
+            }
+        
+        
+        return dataMap;
     }
     
 }
