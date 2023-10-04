@@ -1,4 +1,3 @@
-
 package com.sysc4907.courseconflictresolver;
 
 /**
