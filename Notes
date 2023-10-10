@@ -28,10 +28,27 @@ approach to avoid having to iterate through the entire list to locate a specific
 The parser must be constructed in a manner that allows to continue functioning properly in case
 new columns are added or existing columns are removed.
 
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
+October 9th, 2023 - 8:10PM
 
+REQUIRED COLUMNS
 
-
-
-
-
+TERM
+CRN
+SUBJ
+CRSE
+CATALOG TITLE
+STATUS
+LNK ID
+LNK CON
+DAYS
+STARTTIME
+ENDTIME
+BLDG
+ROOM
+INSTRUCTOR
+MAXENR
+ACTENR
+ROOMCAP
+VOICEAVAIL

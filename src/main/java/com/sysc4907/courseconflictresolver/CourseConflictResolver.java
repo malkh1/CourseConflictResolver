@@ -41,7 +41,7 @@ public class CourseConflictResolver {
                     CourseRecords record = new CourseRecords();
                     BeanUtils.populate(record, dataMap);
                     repo.save(record);
-                    //System.out.println(dataMap);
+                    System.out.println(dataMap);
                 }
                 CourseRecords record = repo.findByCRN("35871");
                 System.out.println(record.getCRN());
