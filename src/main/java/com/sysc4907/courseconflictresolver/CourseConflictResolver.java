@@ -15,7 +15,8 @@ import org.springframework.context.annotation.Bean;
 
 /**
  *
- * @author Mohammad
+ * @author Mohammad Al-Khaledi
+ * @author Waleed Majbour
  */
 @SpringBootApplication
 public class CourseConflictResolver {
@@ -23,7 +24,7 @@ public class CourseConflictResolver {
     @Bean
     public CommandLineRunner demo(CourseRecordsRepository repo) {
         return (args) -> {
-            System.out.println("Hello World!");
+            System.out.println("Parsing File...");
             Parser parser = new Parser("src/main/resources/data_source.xlsx");
 
             try {

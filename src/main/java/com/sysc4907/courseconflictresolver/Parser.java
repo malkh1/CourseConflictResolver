@@ -23,7 +23,10 @@ public class Parser {
     
     private String filePath;
 
-    List<String> includedColumns = Arrays.asList("TERM", "CRN", "SUBJ", "CRSE", "CATALOG_TITLE", "STATUS", "LNK_ID", "LNK_CONN", "DAYS", "START_TIME", "END_TIME", "BLDG", "ROOM", "MAX_ENR", "ACT_ENR", "ROOM_CAP", "VOICE_AVAIL");
+    List<String> includedColumns = Arrays.asList("TERM", "CRN", "SUBJ", "CRSE",
+            "CATALOG_TITLE", "STATUS", "LNK_ID", "LNK_CONN", "DAYS",
+            "START_TIME", "END_TIME", "BLDG", "ROOM", "MAX_ENR", "ACT_ENR",
+            "ROOM_CAP", "VOICE_AVAIL");
     
     /**
      * Creates a parser object
