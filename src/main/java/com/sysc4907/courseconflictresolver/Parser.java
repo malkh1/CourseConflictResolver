@@ -23,9 +23,10 @@ public class Parser {
     
     private String filePath;
 
-    List<String> includedColumns = Arrays.asList("TERM", "CRN", "SUBJ", "CRSE",
+    List<String> includedColumns = Arrays.asList("FAC", "DEPT", "TERM", "CRN", "SUBJ", "CRSE",
             "CATALOG_TITLE", "STATUS", "LNK_ID", "LNK_CONN", "DAYS",
-            "START_TIME", "END_TIME", "BLDG", "ROOM", "MAX_ENR", "ACT_ENR",
+            "START_TIME", "END_TIME", "BLDG", "ROOM", "START_DATE",
+            "END_DATE", "MAX_ENR", "ACT_ENR",
             "ROOM_CAP", "VOICE_AVAIL");
     
     /**
@@ -82,7 +83,7 @@ public class Parser {
             for(Cell cell : row) {
                 int cellIndex = cell.getColumnIndex();
                 String columnName = columnHeaderMap.get(cellIndex);
-                String cellValue;
+                String cellValue = "";
                 switch (cell.getCellType()) {
                     case STRING -> {
                         cellValue = cell.getStringCellValue();
@@ -91,19 +92,20 @@ public class Parser {
                     case NUMERIC -> {
                         if (DateUtil.isCellDateFormatted(cell)) {
                             cellValue = (cell.getDateCellValue()).toString();
-     
+
                         } else {
-                            cellValue = 
+                            cellValue =
                                     String.valueOf(String.format("%.0f", cell.getNumericCellValue()));
                         }
                     }
 
-                    default -> {throw new AssertionError();}    
+                    default -> {
+                        throw new AssertionError();
+                    }
                 }
                 dataMap.put(columnName, cellValue);
             }
-        
-        
+
         return dataMap;
     }
     
