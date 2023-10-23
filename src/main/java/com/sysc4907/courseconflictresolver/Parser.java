@@ -15,7 +15,8 @@ import org.apache.poi.ss.usermodel.WorkbookFactory;
 
 /**
  * This class handles the logic for implementing the Parser object
- * @author Mohammad and Waleed
+ * @author Mohammad Al-Khaledi
+ * @author Waleed Majbour
  */
 public class Parser {
 

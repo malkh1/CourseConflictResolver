@@ -3,12 +3,12 @@ package com.sysc4907.courseconflictresolver;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
-import java.util.Map;
 
 /**
  * This class defines every single column in the database
  * that was taken straight from the excel sheet.
  * Each attribute also has a getter and setter.
+ *
  * @author Mohammad
  */
 @Entity
@@ -17,11 +17,6 @@ public class CourseRecords {
     @Id
     @GeneratedValue
     private Long Id;
-    
-    public CourseRecords() {
-        super();
-    }
-    
     private String FAC;
     private String DEPT;
     private String TERM;
@@ -43,9 +38,11 @@ public class CourseRecords {
     private String ACT_ENR;
     private String ROOM_CAP;
     private String VOICE_AVAIL;
+    public CourseRecords() {
+        super();
+    }
 
-    
-      public String getFAC() {
+    public String getFAC() {
         return FAC;
     }
 

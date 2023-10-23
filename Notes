@@ -7,7 +7,7 @@ Make sure all filtering is done by COLUMN NAME and not COLUMN POSITION
 ASSUMPTIONS TO TAKE INTO CONSIDERATION
 
 - The file format for course information will remain as an excel sheet.
--
+- Only some columns from the excel sheet will be considered for scalability.
 
 -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
@@ -53,6 +53,11 @@ ACTENR
 ROOMCAP
 VOICEAVAIL
 
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
 October 23rd, 2023 - 7:22PM
 
 Filter to parse only required columns committed and pushed.
+
+Discussed the CourseRecordsRepository Class.
+Entries may be redundant. Will come back to it later.
