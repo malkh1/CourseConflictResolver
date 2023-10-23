@@ -2,11 +2,8 @@ package com.sysc4907.courseconflictresolver;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.LinkedHashMap;
-import java.util.Map;
+import java.util.*;
+
 import org.apache.poi.ss.usermodel.Cell;
 import static org.apache.poi.ss.usermodel.CellType.STRING;
 import org.apache.poi.ss.usermodel.DateUtil;
@@ -25,6 +22,8 @@ public class Parser {
     private Map<Integer, String> columnHeaderMap;
     
     private String filePath;
+
+    List<String> includedColumns = Arrays.asList("TERM", "CRN", "SUBJ", "CRSE", "CATALOG_TITLE", "STATUS", "LNK_ID", "LNK_CONN", "DAYS", "START_TIME", "END_TIME", "BLDG", "ROOM", "MAX_ENR", "ACT_ENR", "ROOM_CAP", "VOICE_AVAIL");
     
     /**
      * Creates a parser object
@@ -54,16 +53,17 @@ public class Parser {
      * @return a map containing key-value pairs of columnNames-indices
      * @throws IOException If excel file is currently being used, throw an IOException
      */
-    public Map<Integer, String> getColumnHeaderMap() throws IOException {
-        Sheet sheet =  openFile();
+    public Map<Integer, String> getColumnHeaderMap(List<String> includedColumns) throws IOException {
+        Sheet sheet = openFile();
         Row firstRow = sheet.getRow(0);
-        
-        for(Cell cell : firstRow) {
+
+        for (Cell cell : firstRow) {
             String cellValue = cell.getStringCellValue();
             int cellIndex = cell.getColumnIndex();
-            columnHeaderMap.put(cellIndex, cellValue);
+            if (includedColumns.contains(cellValue)) {
+                columnHeaderMap.put(cellIndex, cellValue);
+            }
         }
-        
         System.out.println(columnHeaderMap);
         return columnHeaderMap;
     }

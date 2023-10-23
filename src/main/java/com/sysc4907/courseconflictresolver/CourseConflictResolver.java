@@ -3,6 +3,8 @@ package com.sysc4907.courseconflictresolver;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Iterator;
+import java.util.List;
+
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.poi.ss.usermodel.Row;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +28,8 @@ public class CourseConflictResolver {
 
             try {
 
-                var courseMap = parser.getColumnHeaderMap();
+                List<String> includedColumns = parser.includedColumns;
+                var courseMap = parser.getColumnHeaderMap(includedColumns);
 
                 Iterator<Row> rowIterator = (parser.openFile()).iterator();
 
