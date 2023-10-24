@@ -38,7 +38,8 @@ public class CourseConflictResolver {
                     rowIterator.next();
                 }
 
-                while (rowIterator.hasNext()) {
+                int rowCount = 0;
+                while (rowIterator.hasNext() && rowCount < 10) { // Prints only the first 10 rows (Change later, this is only for testing)
                     Row row = rowIterator.next();
 
                     var dataMap = parser.getDataMap(row);
@@ -46,6 +47,8 @@ public class CourseConflictResolver {
                     BeanUtils.populate(record, dataMap);
                     repo.save(record);
                     System.out.println(dataMap);
+
+                    rowCount++; // Prints only the first 10 rows (Change later, this is only for testing)
                 }
                 CourseRecords record = repo.findByCRN("35871");
                 System.out.println(record.getCRN());

@@ -80,11 +80,13 @@ public class Parser {
      */
     public Map<String, String> getDataMap(Row row) throws IOException {
         Map<String, String> dataMap = new HashMap<>();
-        
+
+
+
             for(Cell cell : row) {
                 int cellIndex = cell.getColumnIndex();
                 String columnName = columnHeaderMap.get(cellIndex);
-                String cellValue = "";
+                String cellValue;
                 switch (cell.getCellType()) {
                     case STRING -> {
                         cellValue = cell.getStringCellValue();
@@ -98,6 +100,10 @@ public class Parser {
                             cellValue =
                                     String.valueOf(String.format("%.0f", cell.getNumericCellValue()));
                         }
+                    }
+
+                    case BLANK -> {
+                        cellValue = "";
                     }
 
                     default -> {
