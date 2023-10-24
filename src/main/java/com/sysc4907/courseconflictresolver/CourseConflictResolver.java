@@ -3,11 +3,11 @@ package com.sysc4907.courseconflictresolver;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
-
+import java.util.Map;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.poi.ss.usermodel.Row;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -15,7 +15,7 @@ import org.springframework.context.annotation.Bean;
 
 /**
  *
- * @author Mohammad Al-Khaledi
+ * @author Mohammad Alkhaledi
  * @author Waleed Majbour
  */
 @SpringBootApplication
@@ -42,7 +42,7 @@ public class CourseConflictResolver {
                 while (rowIterator.hasNext() && rowCount < 10) { // Prints only the first 10 rows (Change later, this is only for testing)
                     Row row = rowIterator.next();
 
-                    var dataMap = parser.getDataMap(row);
+                    Map<String, String> dataMap = (LinkedHashMap<String, String>)parser.getDataMap(row);
                     CourseRecords record = new CourseRecords();
                     BeanUtils.populate(record, dataMap);
                     repo.save(record);

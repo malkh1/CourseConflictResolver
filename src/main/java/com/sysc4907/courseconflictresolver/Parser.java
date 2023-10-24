@@ -13,6 +13,7 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 
 
+
 /**
  * This class handles the logic for implementing the Parser object
  * @author Mohammad Al-Khaledi
@@ -79,11 +80,10 @@ public class Parser {
      * @throws IOException 
      */
     public Map<String, String> getDataMap(Row row) throws IOException {
-        Map<String, String> dataMap = new HashMap<>();
-
-
+        Map<String, String> dataMap = new LinkedHashMap<>();
 
             for(Cell cell : row) {
+                
                 int cellIndex = cell.getColumnIndex();
                 String columnName = columnHeaderMap.get(cellIndex);
                 String cellValue;
@@ -91,17 +91,16 @@ public class Parser {
                     case STRING -> {
                         cellValue = cell.getStringCellValue();
                     }
-
-                    case NUMERIC -> {
-                        if (DateUtil.isCellDateFormatted(cell)) {
-                            cellValue = (cell.getDateCellValue()).toString();
+                    case NUMERIC -> {                      
+                        if (DateUtil.isCellDateFormatted(cell)) {        
+                            cellValue = cell.toString();
+                            System.out.println("cellvalue:  " + cellValue);
 
                         } else {
                             cellValue =
-                                    String.valueOf(String.format("%.0f", cell.getNumericCellValue()));
+                                    String.format("%.0f", cell.getNumericCellValue());
                         }
                     }
-
                     case BLANK -> {
                         cellValue = "";
                     }
