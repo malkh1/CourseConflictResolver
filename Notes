@@ -61,3 +61,7 @@ Filter to parse only required columns committed and pushed.
 
 Discussed the CourseRecordsRepository Class.
 Entries may be redundant. Will come back to it later.
+There are some null entries.
+These are columns with no entries, ex: START_TIME is blank.
+Courses that are online have no start or end times ie START_TIME, END_TIME. 
+This is an issue because they cannot be accounted for when comparing schedules.

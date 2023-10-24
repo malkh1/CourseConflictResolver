@@ -28,16 +28,17 @@ public class CourseRecords {
     private String LNK_ID;
     private String LNK_CONN;
     private String DAYS;
-    private String STARTTIME;
-    private String ENDTIME;
+    private String START_TIME;
+    private String END_TIME;
     private String BLDG;
     private String ROOM;
-    private String STARTDATE;
-    private String ENDDATE;
+    private String START_DATE;
+    private String END_DATE;
     private String MAX_ENR;
     private String ACT_ENR;
     private String ROOM_CAP;
     private String VOICE_AVAIL;
+    
     public CourseRecords() {
         super();
     }
@@ -130,20 +131,20 @@ public class CourseRecords {
         this.DAYS = DAYS;
     }
 
-    public String getSTARTTIME() {
-        return STARTTIME;
+    public String getSTART_TIME() {
+        return START_TIME;
     }
 
-    public void setSTARTTIME(String STARTTIME) {
-        this.STARTTIME = STARTTIME;
+    public void setSTART_TIME(String START_TIME) {
+        this.START_TIME = START_TIME;
     }
 
-    public String getENDTIME() {
-        return ENDTIME;
+    public String getEND_TIME() {
+        return END_TIME;
     }
 
-    public void setENDTIME(String ENDTIME) {
-        this.ENDTIME = ENDTIME;
+    public void setEND_TIME(String END_TIME) {
+        this.END_TIME = END_TIME;
     }
 
     public String getBLDG() {
@@ -162,20 +163,20 @@ public class CourseRecords {
         this.ROOM = ROOM;
     }
 
-    public String getSTARTDATE() {
-        return STARTDATE;
+    public String getSTART_DATE() {
+        return START_DATE;
     }
 
-    public void setSTARTDATE(String STARTDATE) {
-        this.STARTDATE = STARTDATE;
+    public void setSTART_DATE(String START_DATE) {
+        this.START_DATE = START_DATE;
     }
 
-    public String getENDDATE() {
-        return ENDDATE;
+    public String getEND_DATE() {
+        return END_DATE;
     }
 
-    public void setENDDATE(String ENDDATE) {
-        this.ENDDATE = ENDDATE;
+    public void setEND_DATE(String END_DATE) {
+        this.END_DATE = END_DATE;
     }
 
     public String getMAX_ENR() {
