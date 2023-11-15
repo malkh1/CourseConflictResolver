@@ -61,6 +61,8 @@ public class CourseConflictResolver {
         };
     }
 
+
+
     public static void main(String[] args) {
         SpringApplication.run(CourseConflictResolver.class, args);
 
