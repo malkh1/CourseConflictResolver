@@ -2,12 +2,15 @@ package CourseConflictResolver;
 
 import Parsers.ParseCombinations;
 import Parsers.ParseDatasheet;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.web.servlet.WebMvcAutoConfiguration;
 
 /**
  *
  * @author Mohammad Alkhaledi
  * @author Waleed Majbour
  */
+@SpringBootApplication(exclude = {WebMvcAutoConfiguration.class})
 public class CourseConflictResolverMain {
     public static void main(String[] args) {
         System.out.println("Printing Course Info...\n");
@@ -15,6 +18,8 @@ public class CourseConflictResolverMain {
         System.out.println("---------------------------------------------------------\n");
         System.out.println("Printing Course Combinations...\n");
         ParseCombinations.main(new String[]{});
+
+
 
     }
 }
