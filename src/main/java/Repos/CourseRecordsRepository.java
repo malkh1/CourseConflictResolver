@@ -1,6 +1,8 @@
-package com.sysc4907.courseconflictresolver;
+package Repos;
 
 import java.util.List;
+
+import CourseConflictResolver.CourseRecords;
 import org.springframework.data.repository.CrudRepository;
 
 /**

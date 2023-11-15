@@ -65,3 +65,11 @@ There are some null entries.
 These are columns with no entries, ex: START_TIME is blank.
 Courses that are online have no start or end times ie START_TIME, END_TIME. 
 This is an issue because they cannot be accounted for when comparing schedules.
+
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+November 14th, 2023
+
+Created a parser for the BlockMaster sheet.
+Seperated parsers into their own classes for readability.
+Omitted springboot functionality for now.

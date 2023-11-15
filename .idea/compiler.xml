@@ -6,8 +6,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="CourseConflictResolver" />
+        <module name="CourseConflictResolverMain" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="CourseConflictResolver" target="17" />
+    </bytecodeTargetLevel>
   </component>
 </project>

@@ -1,4 +1,4 @@
-package com.sysc4907.courseconflictresolver;
+package CourseConflictResolver;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

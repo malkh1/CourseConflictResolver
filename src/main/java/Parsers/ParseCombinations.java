@@ -1,4 +1,4 @@
-package com.sysc4907.courseconflictresolver;
+package Parsers;
 
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
