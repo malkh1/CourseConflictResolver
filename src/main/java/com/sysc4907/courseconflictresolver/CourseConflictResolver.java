@@ -39,7 +39,8 @@ public class CourseConflictResolver {
                 }
 
                 int rowCount = 0;
-                while (rowIterator.hasNext() && rowCount < 10) { // Prints only the first 10 rows (Change later, this is only for testing)
+                while (rowIterator.hasNext() && rowCount < 10) { // Prints only the first 10 rows (Change later, this is only for testing) n
+                    //comment
                     Row row = rowIterator.next();
 
                     Map<String, String> dataMap = (LinkedHashMap<String, String>)parser.getDataMap(row);
