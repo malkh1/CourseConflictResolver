@@ -1,5 +1,6 @@
-package CourseConflictResolver;
+package CourseConflictResolver.Models;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -17,26 +18,47 @@ public class CourseRecords {
     @Id
     @GeneratedValue
     private Long Id;
+    @Column(name = "FAC")
     private String FAC;
+    @Column(name = "DEPT")
     private String DEPT;
+    @Column(name = "TERM")
     private String TERM;
+    @Column(name = "CRN")
     private String CRN;
+    @Column(name = "SUBJ")
     private String SUBJ;
+    @Column(name = "CRSE")
     private String CRSE;
+    @Column(name = "CATALOG_TITLE")
     private String CATALOG_TITLE;
+    @Column(name = "STATUS")
     private String STATUS;
+    @Column(name = "LNK_ID")
     private String LNK_ID;
+    @Column(name = "LNK_CONN")
     private String LNK_CONN;
+    @Column(name = "DAYS")
     private String DAYS;
+    @Column(name = "START_TIME")
     private String START_TIME;
+    @Column(name = "END_TIME")
     private String END_TIME;
+    @Column(name = "BLDG")
     private String BLDG;
+    @Column(name = "ROOM")
     private String ROOM;
+    @Column(name = "START_DATE")
     private String START_DATE;
+    @Column(name = "END_DATE")
     private String END_DATE;
+    @Column(name = "MAX_ENR")
     private String MAX_ENR;
+    @Column(name = "ACT_ENR")
     private String ACT_ENR;
+    @Column(name = "ROOM_CAP")
     private String ROOM_CAP;
+    @Column(name = "VOICE_AVAIL")
     private String VOICE_AVAIL;
     
     public CourseRecords() {

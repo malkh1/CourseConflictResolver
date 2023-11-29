@@ -1,4 +1,4 @@
-package Parsers;
+package CourseConflictResolver.Parsers;
 
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
