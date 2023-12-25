@@ -1,4 +1,4 @@
-package CourseConflictResolver.Services;
+/**package CourseConflictResolver.Services;
 
 import CourseConflictResolver.Models.CourseRecords;
 import CourseConflictResolver.Repos.CourseRecordsRepository;
@@ -22,7 +22,7 @@ public class AllCombos {
 
     public int showAllCombinations(){
 
-        /**CourseRecords comp1805A = new CourseRecords();
+        CourseRecords comp1805A = new CourseRecords();
         comp1805A.setSUBJ("COMP1805A");
         comp1805A.setSTART_TIME("1605");
         comp1805A.setEND_TIME("1725");
@@ -50,8 +50,8 @@ public class AllCombos {
         comp1805A5.setSUBJ("COMP1805A5");
         comp1805A5.setSTART_TIME("1335");
         comp1805A5.setEND_TIME("1425");
-        comp1805A5.setDAYS("W");*/
-        
+        comp1805A5.setDAYS("W");
+
 
         int combos;
         combos = 0;
@@ -71,4 +71,51 @@ public class AllCombos {
 
     }
 
+}
+ */
+
+package CourseConflictResolver.Services;
+
+import CourseConflictResolver.Models.CourseRecords;
+import CourseConflictResolver.Repos.CourseRecordsRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
+
+@Service
+public class AllCombos {
+
+    @Autowired
+    private final CourseRecordsRepository courseRepo;
+    private List<CourseRecords> courses = new ArrayList<>();
+
+    public AllCombos(CourseRecordsRepository courseRepo) {
+        this.courseRepo = courseRepo;
+    }
+
+    public void setCourses(List<CourseRecords> courses) {
+        this.courses = courses;
+    }
+
+    public int showAllCombinations() {
+        int combos = 0;
+
+        for (int i = 0; i < courses.size(); i++) {
+            for (int j = i + 1; j < courses.size(); j++) {
+                printCombinationDetails(courses.get(i), courses.get(j));
+                combos++;
+            }
+        }
+
+        return combos;
+    }
+
+    private void printCombinationDetails(CourseRecords course1, CourseRecords course2) {
+        System.out.println("Combination:");
+        System.out.println("Course 1: " + course1.getSUBJ() + " " + course1.getDAYS() + " " + course1.getSTART_TIME() + "-" + course1.getEND_TIME());
+        System.out.println("Course 2: " + course2.getSUBJ() + " " + course2.getDAYS() + " " + course2.getSTART_TIME() + "-" + course2.getEND_TIME());
+        System.out.println("------------------------------");
+    }
 }
