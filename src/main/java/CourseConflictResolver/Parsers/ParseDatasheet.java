@@ -104,8 +104,8 @@ public class ParseDatasheet {
                 dB.storeIntoDB(getDataMap(row));
                 printRow(row);
                 
-                if(i++>=100)
-                    break;
+                //if(i++>=100)
+                    //break;
             }
             System.out.println();
             workbook.close();
