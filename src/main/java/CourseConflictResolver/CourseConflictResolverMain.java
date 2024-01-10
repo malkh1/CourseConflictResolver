@@ -63,8 +63,8 @@ public class CourseConflictResolverMain {
 
             CourseRecords comp1805A5 = new CourseRecords();
             comp1805A5.setSUBJ("COMP1805A5");
-            comp1805A5.setSTART_TIME("1335");
-            comp1805A5.setEND_TIME("1425");
+            comp1805A5.setSTART_TIME("935");
+            comp1805A5.setEND_TIME("1025");
             comp1805A5.setDAYS("W");
 
             List<CourseRecords> selectedCourses = new ArrayList<>();
@@ -77,7 +77,9 @@ public class CourseConflictResolverMain {
             AllCombos allCombos = new AllCombos(repo);
             allCombos.setCourses(selectedCourses);
             int numberOfCombinations = allCombos.showAllCombinations();
+            int checkConflicts = allCombos.checkForConflicts();
             System.out.println("Number of all possible combinations: " + numberOfCombinations);
+            System.out.println("Conflicting Courses: " + checkConflicts);
             //System.out.println("Printing Course Combinations...\n");
             //ParseCombinations.main(new String[]{});
 

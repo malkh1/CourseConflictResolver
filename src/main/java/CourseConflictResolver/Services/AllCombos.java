@@ -112,10 +112,46 @@ public class AllCombos {
         return combos;
     }
 
+    public int checkForConflicts(){
+
+        int conflicts = 0;
+
+        for (int i = 0; i < courses.size(); i++){
+            for (int j = i + 1; j < courses.size(); j++){
+                if(isConflicting(courses.get(i), courses.get(j))){
+                    printConflictDetails(courses.get(i), courses.get(j));
+                    conflicts++;
+                }
+            }
+        }
+        return conflicts;
+    }
+
+    private boolean isConflicting(CourseRecords course1, CourseRecords course2){
+        if(course1.getDAYS().equals(course2.getDAYS())){
+            int start1 = Integer.parseInt(course1.getSTART_TIME());
+            int end1 = Integer.parseInt(course1.getEND_TIME());
+            int start2 = Integer.parseInt(course2.getSTART_TIME());
+            int end2 = Integer.parseInt(course2.getEND_TIME());
+
+            if((start1 >= start2 && start1 < end2) || (end1 > start2 && end1 <= end2) || (start2 >= start1 && start2 < end1)
+            || (end2 > start1 && end2 <= end1)){
+                return true;
+            }
+        }
+        return false;
+    }
+
     private void printCombinationDetails(CourseRecords course1, CourseRecords course2) {
         System.out.println("Combination:");
         System.out.println("Course 1: " + course1.getSUBJ() + " " + course1.getDAYS() + " " + course1.getSTART_TIME() + "-" + course1.getEND_TIME());
         System.out.println("Course 2: " + course2.getSUBJ() + " " + course2.getDAYS() + " " + course2.getSTART_TIME() + "-" + course2.getEND_TIME());
         System.out.println("------------------------------");
+    }
+
+    private void printConflictDetails(CourseRecords course1, CourseRecords course2){
+        System.out.println("Conflict: ");
+        System.out.println("Course 1: " + course1.getSUBJ() + " " + course1.getDAYS() + " " + course1.getSTART_TIME() + " " + course1.getEND_TIME());
+        System.out.println("Course 2: " + course2.getSUBJ() + " " + course2.getDAYS() + " " + course2.getSTART_TIME() + " " + course2.getEND_TIME());
     }
 }
