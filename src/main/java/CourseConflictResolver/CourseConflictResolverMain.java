@@ -43,17 +43,17 @@ public class CourseConflictResolverMain {
             comp1805A.setEND_TIME("1725");
             comp1805A.setDAYS("TR");
 
-            CourseRecords comp1805A1 = new CourseRecords();
-            comp1805A1.setSUBJ("COMP1805A1");
-            comp1805A1.setSTART_TIME("835");
-            comp1805A1.setEND_TIME("925");
-            comp1805A1.setDAYS("W");
+            CourseRecords Ecor4995A = new CourseRecords();
+            Ecor4995A.setSUBJ("ECOR4995A");
+            Ecor4995A.setSTART_TIME("1800");
+            Ecor4995A.setEND_TIME("2100");
+            Ecor4995A.setDAYS("W");
 
-            CourseRecords comp1805A2 = new CourseRecords();
-            comp1805A2.setSUBJ("COMP1805A2");
-            comp1805A2.setSTART_TIME("1035");
-            comp1805A2.setEND_TIME("1125");
-            comp1805A2.setDAYS("W");
+            CourseRecords Ecor4995B = new CourseRecords();
+            Ecor4995B.setSUBJ("ECOR4995B");
+            Ecor4995B.setSTART_TIME("1800");
+            Ecor4995B.setEND_TIME("2100");
+            Ecor4995B.setDAYS("W");
 
             CourseRecords comp1805A3 = new CourseRecords();
             comp1805A3.setSUBJ("COMP1805A3");
@@ -61,25 +61,53 @@ public class CourseConflictResolverMain {
             comp1805A3.setEND_TIME("1025");
             comp1805A3.setDAYS("W");
 
-            CourseRecords comp1805A5 = new CourseRecords();
-            comp1805A5.setSUBJ("COMP1805A5");
-            comp1805A5.setSTART_TIME("935");
-            comp1805A5.setEND_TIME("1025");
-            comp1805A5.setDAYS("W");
+            CourseRecords Sysc4001A = new CourseRecords();
+            Sysc4001A.setSUBJ("SYSC4001A");
+            Sysc4001A.setDAYS("M");
+            Sysc4001A.setSTART_TIME("835");
+            Sysc4001A.setEND_TIME("1000");
+
+            CourseRecords Sysc4001B = new CourseRecords();
+            Sysc4001B.setSUBJ("SYSC4001B");
+            Sysc4001B.setDAYS("T");
+            Sysc4001B.setSTART_TIME("835");
+            Sysc4001B.setEND_TIME("1000");
+
+            CourseRecords Sysc4002A = new CourseRecords();
+            Sysc4002A.setSUBJ("SYSC4002A");
+            Sysc4002A.setDAYS("M");
+            Sysc4002A.setSTART_TIME("835");
+            Sysc4002A.setEND_TIME("1000");
+
+
+            CourseRecords Sysc4002B = new CourseRecords();
+            Sysc4002B.setSUBJ("SYSC4002B");
+            Sysc4002B.setDAYS("W");
+            Sysc4002B.setSTART_TIME("835");
+            Sysc4002B.setEND_TIME("1000");
+
 
             List<CourseRecords> selectedCourses = new ArrayList<>();
             selectedCourses.add(comp1805A);
-            selectedCourses.add(comp1805A1);
-            selectedCourses.add(comp1805A2);
+            selectedCourses.add(Ecor4995A);
+            selectedCourses.add(Ecor4995B);
             selectedCourses.add(comp1805A3);
-            selectedCourses.add(comp1805A5);
+            selectedCourses.add(Sysc4001A);
+            selectedCourses.add(Sysc4001B);
+            selectedCourses.add(Sysc4002A);
+            selectedCourses.add(Sysc4002B);
 
             AllCombos allCombos = new AllCombos(repo);
             allCombos.setCourses(selectedCourses);
             int numberOfCombinations = allCombos.showAllCombinations();
             int checkConflicts = allCombos.checkForConflicts();
-            System.out.println("Number of all possible combinations: " + numberOfCombinations);
-            System.out.println("Conflicting Courses: " + checkConflicts);
+            int viableSchedules = allCombos.conCurrentCourses();
+            System.out.println("-----------------------------");
+            System.out.println("Number of possible combinations, ignoring conflicts: " + numberOfCombinations);
+            System.out.println("-----------------------------");
+            System.out.println("Number of conflicting courses: " + checkConflicts);
+            System.out.println("-----------------------------");
+            System.out.println("Number of viable schedules: " + viableSchedules);
             //System.out.println("Printing Course Combinations...\n");
             //ParseCombinations.main(new String[]{});
 
