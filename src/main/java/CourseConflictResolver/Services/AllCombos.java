@@ -23,6 +23,8 @@ public class AllCombos {
         this.courses = courses;
     }
 
+    private int scheduleNum = 0;
+
     public int showAllCombinations() {
 
         int combos = 0;
@@ -134,10 +136,11 @@ public class AllCombos {
     }
 
     private void printConcurrentCourses(List<CourseRecords> concurrentCourses){
-        System.out.println("Schedule: ");
+        System.out.println("Schedule: " + scheduleNum);
         for (CourseRecords course : concurrentCourses){
             System.out.println("Course: " + course.getSUBJ());
         }
+        scheduleNum++;
     }
 
 }

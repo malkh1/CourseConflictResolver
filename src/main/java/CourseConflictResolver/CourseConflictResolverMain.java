@@ -55,11 +55,11 @@ public class CourseConflictResolverMain {
             Ecor4995B.setEND_TIME("2100");
             Ecor4995B.setDAYS("W");
 
-            CourseRecords comp1805A3 = new CourseRecords();
-            comp1805A3.setSUBJ("COMP1805A3");
-            comp1805A3.setSTART_TIME("935");
-            comp1805A3.setEND_TIME("1025");
-            comp1805A3.setDAYS("W");
+            CourseRecords Sysc4504 = new CourseRecords();
+            Sysc4504.setSUBJ("COMP1805A3");
+            Sysc4504.setSTART_TIME("935");
+            Sysc4504.setEND_TIME("1025");
+            Sysc4504.setDAYS("W");
 
             CourseRecords Sysc4001A = new CourseRecords();
             Sysc4001A.setSUBJ("SYSC4001A");
@@ -91,7 +91,7 @@ public class CourseConflictResolverMain {
             selectedCourses.add(comp1805A);
             selectedCourses.add(Ecor4995A);
             selectedCourses.add(Ecor4995B);
-            selectedCourses.add(comp1805A3);
+            selectedCourses.add(Sysc4504);
             selectedCourses.add(Sysc4001A);
             selectedCourses.add(Sysc4001B);
             selectedCourses.add(Sysc4002A);
