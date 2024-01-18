@@ -5,9 +5,7 @@ import CourseConflictResolver.Repos.CourseRecordsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 @Service
 public class AllCombos {
@@ -78,7 +76,7 @@ public class AllCombos {
         return false;
     }
 
-    public void checkForLNKID(CourseRecords course, List<CourseRecords> concurrentCourses){
+    /**public void checkForLNKID(CourseRecords course, List<CourseRecords> concurrentCourses){
         if(course.getLNK_ID() != null) {
             if (course.getINSTR_TYPE().equals("LEC")) {
                 for (CourseRecords course2 : concurrentCourses) {
@@ -93,7 +91,100 @@ public class AllCombos {
             }
         }
 
+        if(course.getINSTR_TYPE().equals("LAB")){
+            for(CourseRecords course2: concurrentCourses){
+                if(course2.getINSTR_TYPE().equals("LEC")){
+                    if (course.getLNK_CONN().equals(course2.getLNK_ID()) && course.getCRSE().equals(course2.getCRSE())){
+                        System.out.println("You are registered in a lecture and lab/tutorial for " + course2.getSUBJ());
+                    }else{
+                        System.out.println("You must register in " + course2.getSUBJ() + " to take this lab section.");
+                    }
+                }
+            }
+        }
+    }*/
+
+
+    public void checkForLNKID(CourseRecords course, List<CourseRecords> concurrentCourses) {
+        Set<String> processedLectures = new HashSet<>();
+        boolean labRequiresLecture = "LAB".equals(course.getINSTR_TYPE());
+        boolean panRequiresLecture = "PAN".equals(course.getINSTR_TYPE());
+
+        for (CourseRecords course2 : concurrentCourses) {
+            if ("LEC".equals(course2.getINSTR_TYPE()) && (labRequiresLecture || panRequiresLecture)) {
+                if (course.getLNK_ID() != null && course2.getLNK_CONN() != null
+                        && course.getLNK_ID().equals(course2.getLNK_CONN()) && course.getCRSE().equals(course2.getCRSE())) {
+                    String relationshipKey = course.getSUBJ() + "-" + course2.getSUBJ();
+                    if (!processedLectures.contains(relationshipKey)) {
+                        System.out.println("No further action required for " + course.getSUBJ() + course.getCRSE() + course2.getSEQ());
+                        processedLectures.add(relationshipKey);
+                    }
+                }
+            } else if ("LEC".equals(course.getINSTR_TYPE()) && "LAB".equals(course2.getINSTR_TYPE())) {
+                if (course.getLNK_ID() != null && course2.getLNK_CONN() != null
+                        && course.getLNK_ID().equals(course2.getLNK_CONN()) && course.getCRSE().equals(course2.getCRSE())) {
+                    System.out.println("Registration in a corresponding Lab is required for "
+                            + course.getSUBJ() + course.getCRSE() + course.getSEQ());
+                }
+            } else if ("LEC".equals(course.getINSTR_TYPE()) && "PAN".equals(course2.getINSTR_TYPE())) {
+                if (course.getLNK_ID() != null && course2.getLNK_CONN() != null
+                        && course.getLNK_ID().equals(course2.getLNK_CONN()) && course.getCRSE().equals(course2.getCRSE())) {
+                    System.out.println("Registration in a corresponding tutorial is required for "
+                            + course.getSUBJ() + course.getCRSE() + course.getSEQ());
+                }
+            }
+        }
+
+        if (labRequiresLecture || panRequiresLecture) {
+            boolean lectureFound = processedLectures.stream()
+                    .anyMatch(relationshipKey -> relationshipKey.startsWith(course.getSUBJ() + "-"));
+            if (!lectureFound) {
+                System.out.println("Registration in a corresponding lecture section is required for " + course.getSUBJ()
+                        + course.getCRSE() + course.getSEQ()
+                );
+            }
+        }
     }
+
+    /*public void checkForLNKID(CourseRecords course, List<CourseRecords> concurrentCourses) {
+        Set<String> processedLectures = new HashSet<>();
+        Set<String> processedLabs = new HashSet<>();
+        Set<String> processedTutorials = new HashSet<>();
+
+        for (CourseRecords course2 : concurrentCourses) {
+            if ("LEC".equals(course2.getINSTR_TYPE())) {
+
+                handleLectureLabRelationship(course, course2, processedLectures, processedLabs);
+
+
+                handleLectureTutorialRelationship(course, course2, processedLectures, processedTutorials);
+            }
+        }
+    }
+
+    private void handleLectureLabRelationship(CourseRecords course, CourseRecords lecture, Set<String> processedLectures, Set<String> processedLabs) {
+        if ("LAB".equals(course.getINSTR_TYPE()) && lecture.getLNK_ID() != null && course.getLNK_ID() != null
+                && course.getLNK_ID().equals(lecture.getLNK_CONN()) && course.getCRSE().equals(lecture.getCRSE())) {
+            String relationshipKey = lecture.getSUBJ() + "-" + lecture.getCRSE() + "-" + lecture.getSEQ();
+            if (!processedLectures.contains(relationshipKey)) {
+                System.out.println("Registration in a corresponding Lab is required for " + lecture.getSUBJ() + lecture.getCRSE() + lecture.getSEQ());
+                processedLectures.add(relationshipKey);
+            }
+        }
+    }
+
+    private void handleLectureTutorialRelationship(CourseRecords course, CourseRecords lecture, Set<String> processedLectures, Set<String> processedTutorials) {
+        if ("PAN".equals(course.getINSTR_TYPE()) && lecture.getLNK_ID() != null && course.getLNK_ID() != null
+                && course.getLNK_ID().equals(lecture.getLNK_CONN()) && course.getCRSE().equals(lecture.getCRSE())) {
+            String relationshipKey = lecture.getSUBJ() + "-" + lecture.getCRSE() + "-" + lecture.getSEQ();
+            if (!processedTutorials.contains(relationshipKey)) {
+                System.out.println("Registration in a corresponding tutorial is required for " + lecture.getSUBJ() + lecture.getCRSE() + lecture.getSEQ());
+                processedTutorials.add(relationshipKey);
+            }
+        }
+    }*/
+
+
 
 
     public int conCurrentCourses() {
@@ -162,12 +253,44 @@ public class AllCombos {
         System.out.println("");
 
         for (CourseRecords course : concurrentCourses) {
-            System.out.println("Course: " + course.getSUBJ());
+            System.out.println("Course: " + course.getSUBJ() + course.getCRSE() + course.getSEQ());
             checkForLNKID(course, concurrentCourses);
             System.out.println("");
 
         }
         scheduleNum++;
     }
+
+    /*private void printConcurrentCourses(List<CourseRecords> concurrentCourses) {
+        System.out.println("Schedule: " + scheduleNum);
+        System.out.println("");
+
+        boolean hasLab = false;
+        boolean hasTutorial = false;
+
+        for (CourseRecords course : concurrentCourses) {
+            System.out.println("Course: " + course.getSUBJ() + course.getCRSE() + course.getSEQ());
+            checkForLNKID(course, concurrentCourses);
+
+            if ("LAB".equals(course.getINSTR_TYPE())) {
+                hasLab = true;
+            } else if ("PAN".equals(course.getINSTR_TYPE())) {
+                hasTutorial = true;
+            }
+            System.out.println("");
+        }
+
+        if (hasLab && hasTutorial) {
+            System.out.println("Registration in both lab and tutorial sections is successful.");
+        } else if (hasLab && !hasTutorial) {
+            System.out.println("Tutorial missing.");
+        }
+
+        System.out.println("-----------------------------");
+        scheduleNum++;
+    }*/
+
+
+
 
 }

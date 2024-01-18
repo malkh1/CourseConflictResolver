@@ -4,7 +4,8 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
-import org.hibernate.annotations.CollectionId;
+
+import java.util.List;
 
 /**
  * This class defines every single column in the database
@@ -39,6 +40,8 @@ public class CourseRecords {
     private String LNK_ID;
     @Column(name = "LNK_CONN")
     private String LNK_CONN;
+    @Column(name = "LNK_CONN_List")
+    private List<String> LNK_CONN_List;
     @Column(name = "DAYS")
     private String DAYS;
     @Column(name = "START_TIME")
@@ -63,6 +66,19 @@ public class CourseRecords {
     private String VOICE_AVAIL;
     @Column(name = "INSTR_TYPE")
     private String INSTR_TYPE;
+    @Column(name = "SEQ")
+    private String SEQ;
+
+
+    public String getSEQ() {
+        return SEQ;
+    }
+
+    public void setSEQ(String SEQ) {
+        this.SEQ = SEQ;
+    }
+
+
     public String getINSTR_TYPE() {
         return INSTR_TYPE;
     }
@@ -152,6 +168,14 @@ public class CourseRecords {
 
     public void setLNK_CONN(String LNK_CONN) {
         this.LNK_CONN = LNK_CONN;
+    }
+
+    public List<String> getLNK_CONN_List(){
+        return LNK_CONN_List;
+    }
+
+    public void setLNK_CONN_List(List<String> lnkConnValues){
+        this.LNK_CONN_List = LNK_CONN_List;
     }
 
     public String getDAYS() {
