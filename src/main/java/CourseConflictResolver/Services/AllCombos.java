@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class AllCombos {
@@ -51,6 +52,7 @@ public class AllCombos {
 
         for (int i = 0; i < courses.size(); i++){
             for (int j = i + 1; j < courses.size(); j++){
+
                 if(isConflicting(courses.get(i), courses.get(j))){
                     printConflictDetails(courses.get(i), courses.get(j));
                     System.out.println("-----------------------------");
@@ -75,6 +77,24 @@ public class AllCombos {
         }
         return false;
     }
+
+    public void checkForLNKID(CourseRecords course, List<CourseRecords> concurrentCourses){
+        if(course.getLNK_ID() != null) {
+            if (course.getINSTR_TYPE().equals("LEC")) {
+                for (CourseRecords course2 : concurrentCourses) {
+                    if (course2.getINSTR_TYPE().equals("LAB")) {
+                        if (course.getLNK_ID().equals(course2.getLNK_CONN()) && course.getCRSE().equals(course2.getCRSE())) {
+                            System.out.println("No further registration is required for " + course.getSUBJ());
+                        }else{
+                            System.out.println("Registration for a Lab and/or tutorial is required for " + course.getSUBJ());
+                        }
+                    }
+                }
+            }
+        }
+
+    }
+
 
     public int conCurrentCourses() {
 
@@ -118,6 +138,8 @@ public class AllCombos {
         return false;
     }
 
+
+
     /*private void printCombinationDetails(CourseRecords course1, CourseRecords course2, CourseRecords course3,
                                         CourseRecords course4, CourseRecords course5) {
             System.out.println("Combination:");
@@ -137,8 +159,13 @@ public class AllCombos {
 
     private void printConcurrentCourses(List<CourseRecords> concurrentCourses){
         System.out.println("Schedule: " + scheduleNum);
-        for (CourseRecords course : concurrentCourses){
+        System.out.println("");
+
+        for (CourseRecords course : concurrentCourses) {
             System.out.println("Course: " + course.getSUBJ());
+            checkForLNKID(course, concurrentCourses);
+            System.out.println("");
+
         }
         scheduleNum++;
     }

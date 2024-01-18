@@ -4,6 +4,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import org.hibernate.annotations.CollectionId;
 
 /**
  * This class defines every single column in the database
@@ -60,7 +61,15 @@ public class CourseRecords {
     private String ROOM_CAP;
     @Column(name = "VOICE_AVAIL")
     private String VOICE_AVAIL;
-    
+    @Column(name = "INSTR_TYPE")
+    private String INSTR_TYPE;
+    public String getINSTR_TYPE() {
+        return INSTR_TYPE;
+    }
+    public void setINSTR_TYPE(String INSTR_TYPE) {
+        this.INSTR_TYPE = INSTR_TYPE;
+    }
+
     public CourseRecords() {
         super();
     }
