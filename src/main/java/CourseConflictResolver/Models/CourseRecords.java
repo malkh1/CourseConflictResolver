@@ -5,6 +5,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 
+import java.util.List;
+
 /**
  * This class defines every single column in the database
  * that was taken straight from the excel sheet.
@@ -38,6 +40,8 @@ public class CourseRecords {
     private String LNK_ID;
     @Column(name = "LNK_CONN")
     private String LNK_CONN;
+    @Column(name = "LNK_CONN_List")
+    private List<String> LNK_CONN_List;
     @Column(name = "DAYS")
     private String DAYS;
     @Column(name = "START_TIME")
@@ -60,7 +64,28 @@ public class CourseRecords {
     private String ROOM_CAP;
     @Column(name = "VOICE_AVAIL")
     private String VOICE_AVAIL;
-    
+    @Column(name = "INSTR_TYPE")
+    private String INSTR_TYPE;
+    @Column(name = "SEQ")
+    private String SEQ;
+
+
+    public String getSEQ() {
+        return SEQ;
+    }
+
+    public void setSEQ(String SEQ) {
+        this.SEQ = SEQ;
+    }
+
+
+    public String getINSTR_TYPE() {
+        return INSTR_TYPE;
+    }
+    public void setINSTR_TYPE(String INSTR_TYPE) {
+        this.INSTR_TYPE = INSTR_TYPE;
+    }
+
     public CourseRecords() {
         super();
     }
@@ -143,6 +168,14 @@ public class CourseRecords {
 
     public void setLNK_CONN(String LNK_CONN) {
         this.LNK_CONN = LNK_CONN;
+    }
+
+    public List<String> getLNK_CONN_List(){
+        return LNK_CONN_List;
+    }
+
+    public void setLNK_CONN_List(List<String> lnkConnValues){
+        this.LNK_CONN_List = LNK_CONN_List;
     }
 
     public String getDAYS() {
