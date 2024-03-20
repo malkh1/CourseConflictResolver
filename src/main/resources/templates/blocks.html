@@ -1,49 +1,20 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
     <head>
-        <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+        <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Blocks</title>
-        <style>
-            body {
-                text-align: center;
-                background-color: #121212;
-                color: #EAEAEA;
-            }
-            table {
-                border: 1px solid #EAEAEA;
-                border-collapse: collapse;
-                margin: 0 auto;
-            }
-            
-            .text-left-align {
-                text-align: left;
-            }
-            .view-button {
-                color: #000;
-                text-decoration: none;
-                background-color: #5E8387;
-                padding: 1px;
-            }
-            .view-button:hover {
-                background-color: #0E0E0E;
-                color: #EAEAEA;
-            }
-        </style>
+        <link rel="stylesheet" th:href="@{/blocks-styles.css}">
     </head>
     <body>
         <header>
             <h1>Blocks</h1>
         </header>
-        <!-- <div th:if="${errorMessage}">
-           <p th:text="${errorMessage}"></p>
-         </div>th:unless="${errorMessage}"-->
         <main>
                 
             <table>
                 <caption class="text-left-align">List of blocks and their properties</caption>
                 <thead>
-                    
                     <tr>
                         <th>Block ID</th>
                         <th>Student Count</th>
@@ -61,7 +32,7 @@
                     <td th:text="${block.value.nonConflictingCombinations}"></td>
                     <td class="text-left-align" th:text="${block.value.courses}"></td>
                     <td>
-                        <a class="view-button" th:href="@{/viewBlock/{blockKey}(blockKey=${block.key})}">View</a>
+                        <a class="view-button" th:href="@{/viewblock/{blockKey}(blockKey=${block.key})}">View</a>
                     </td>
                 </tr>
             </table>
