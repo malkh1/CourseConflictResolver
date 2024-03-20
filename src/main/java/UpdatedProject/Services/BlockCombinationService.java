@@ -69,12 +69,13 @@ public class BlockCombinationService {
                 }
                 nonConflictingCourses.addAll(sections);
             }
-            int nonConflictingCombinations = countNonConflictingCombinations(nonConflictingCourses);
+            int nonConflictingCombinations = calculateNonConflictingCombinations(nonConflictingCourses);
             info.setNonConflictingCombinations(nonConflictingCombinations);
             info.setCombinations(totalCombinations);
         });
         return blockDetails;
     }
+
 
     private String extractTermFromBlock(String block){
         return block.substring(block.length() - 1);
@@ -91,7 +92,6 @@ public class BlockCombinationService {
         if (section1.getTERM() == null || section2.getTERM() == null) {
             return false;
         }
-
 
         if (!section1.getTERM().equals(section2.getTERM())) return false;
 
@@ -121,24 +121,29 @@ public class BlockCombinationService {
         LocalTime endTime2 = LocalTime.parse(endTime2Str, formatter);
 
 
-        return !(startTime1.isAfter(endTime2) || endTime1.isBefore(startTime2));
-    }
-
-
-    public static int countNonConflictingCombinations(List<CourseRecords> sections) {
-        int nonConflictingCount = 0;
-
-
-        for (int i = 0; i < sections.size(); i++) {
-            for (int j = i + 1; j < sections.size(); j++) {
-                if (!hasConflict(sections.get(i), sections.get(j))) {
-
-                    nonConflictingCount++;
+        if(!(startTime1.isAfter(endTime2) || endTime1.isBefore(startTime2))){
+            if(section1.getBLDG() != null && section2.getBLDG() != null &&
+            section1.getBLDG().equals(section2.getBLDG())){
+                if(section1.getROOM() != null && section2.getROOM() != null &&
+                section1.getROOM().equals(section2.getROOM())){
+                    return true;
                 }
             }
         }
-
-        return nonConflictingCount;
+        return false;
     }
 
+
+    private int calculateNonConflictingCombinations(List<CourseRecords> sections) {
+        int nonConflictingCombinations = 0;
+
+        for (int i = 0; i < sections.size(); i++) {
+            for (int j = i + 1; j < sections.size(); j++) {
+                if (hasConflict(sections.get(i), sections.get(j))) {
+                    nonConflictingCombinations++;
+                }
+            }
+        }
+        return nonConflictingCombinations;
+    }
 }

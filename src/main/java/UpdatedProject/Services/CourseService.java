@@ -47,7 +47,11 @@ public class CourseService {
                 course.setDAYS(formatter.formatCellValue(row.getCell(18)));
                 course.setSTART_TIME(formatter.formatCellValue(row.getCell(19)));
                 course.setEND_TIME(formatter.formatCellValue(row.getCell(20)));
-                
+                course.setBLDG(formatter.formatCellValue(row.getCell(21)));
+                course.setROOM(formatter.formatCellValue(row.getCell(22)));
+                course.setMAX_ENR(formatter.formatCellValue(row.getCell(27)));
+                course.setACT_ENR(formatter.formatCellValue(row.getCell(28)));
+
                 courses.add(course);
                 courseRepository.save(course);
             }   
