@@ -1,0 +1,4 @@
+# when committing with git, ignore these files and directories
+nb-configuration.xml
+target/
+.idea/
