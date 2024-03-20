@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Blocks</title>
+        <style>
+            body {
+                text-align: center;
+                background-color: #121212;
+                color: #EAEAEA;
+            }
+            table {
+                border: 1px solid #EAEAEA;
+                border-collapse: collapse;
+                margin: 0 auto;
+            }
+            
+            .text-left-align {
+                text-align: left;
+            }
+            .view-button {
+                color: #EAEAEA;
+                text-decoration: none;
+                background-color: #232B32;
+                padding: 1px;
+            }
+            .view-button:hover {
+                background-color: #0E0E0E;
+                color: #EAEAEA;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <h1>Blocks</h1>
+        </header>
+        <!-- <div th:if="${errorMessage}">
+           <p th:text="${errorMessage}"></p>
+         </div>th:unless="${errorMessage}"-->
+        <main>
+                
+            <table>
+                <caption class="text-left-align">List of blocks and their properties</caption>
+                <thead>
+                    
+                    <tr>
+                        <th>Block ID</th>
+                        <th>Student Count</th>
+                        <th>Combinations</th>
+                        <th>Non-conflicting Combinations</th>
+                        <th>Courses</th>
+                        <th>View</th>
+                    </tr>
+                </thead>
+                <tfoot></tfoot>
+                <tr th:each="block : ${blocks}">
+                    <td th:text="${block.key}"></td>
+                    <td th:text="${block.value.studentCount}"></td>
+                    <td th:text="${block.value.combinations}"></td>
+                    <td th:text="${block.value.nonConflictingCombinations}"></td>
+                    <td class="text-left-align" th:text="${block.value.courses}"></td>
+                    <td>
+                        <a class="view-button" th:href="@{/viewBlock/{blockKey}(blockKey=${block.key})}">View</a>
+                    </td>
+                </tr>
+            </table>
+        </main>
+
+    </body>
+</html>
