@@ -1,35 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
     <head>
-        <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+        <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Blocks</title>
-        <style>
-            body {
-                text-align: center;
-                background-color: #121212;
-                color: #EAEAEA;
-            }
-            table {
-                border: 1px solid #EAEAEA;
-                border-collapse: collapse;
-                margin: 0 auto;
-            }
-            
-            .text-left-align {
-                text-align: left;
-            }
-            .view-button {
-                color: #EAEAEA;
-                text-decoration: none;
-                background-color: #232B32;
-                padding: 1px;
-            }
-            .view-button:hover {
-                background-color: #0E0E0E;
-                color: #EAEAEA;
-            }
-        </style>
+        <link rel="stylesheet" th:href="@{/blocks-styles.css}">
     </head>
     <body>
         <header>

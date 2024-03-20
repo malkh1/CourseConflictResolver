@@ -1,0 +1,28 @@
+/* 
+    Author     : mohammad and waleed
+*/
+
+body {
+    text-align: center;
+    background-color: #121212;
+    color: #EAEAEA;
+}
+table {
+    border: 1px solid #EAEAEA;
+    border-collapse: collapse;
+    margin: 0 auto;
+}
+
+.text-left-align {
+    text-align: left;
+}
+.view-button {
+    color: #000;
+    text-decoration: none;
+    background-color: #5E8387;
+    padding: 1px;
+}
+.view-button:hover {
+    background-color: #0E0E0E;
+    color: #EAEAEA;
+}

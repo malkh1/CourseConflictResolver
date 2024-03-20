@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @author mohammad and waleed
  */
 @Controller
-@RequestMapping("/viewBlock")
+@RequestMapping(value = "/viewBlock")
 public class ViewBlockController {
     
     public ViewBlockController() {
