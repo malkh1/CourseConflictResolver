@@ -1,5 +1,5 @@
 /* 
-    Author     : mohammad and waleed
+    Author     : mohammad and waleed border: 1px solid #EAEAEA;
 */
 
 body {
@@ -8,11 +8,29 @@ body {
     color: #EAEAEA;
 }
 table {
-    border: 1px solid #EAEAEA;
+    
     border-collapse: collapse;
     margin: 0 auto;
 }
 
+thead tr {
+    background-color: #1E1E1E;
+}
+
+th {
+    padding: 1vh;
+}
+tbody tr {
+    background-color: #0F0F0F;
+    border-bottom-color: #0C0C0C;
+    
+}
+tbody tr:nth-child(even) {
+    background-color: #111111;
+}
+tbody td {
+    padding: 1vh;
+}
 .text-left-align {
     text-align: left;
 }

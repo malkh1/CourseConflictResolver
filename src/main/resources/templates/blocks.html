@@ -10,15 +10,11 @@
         <header>
             <h1>Blocks</h1>
         </header>
-        <!-- <div th:if="${errorMessage}">
-           <p th:text="${errorMessage}"></p>
-         </div>th:unless="${errorMessage}"-->
         <main>
                 
             <table>
                 <caption class="text-left-align">List of blocks and their properties</caption>
                 <thead>
-                    
                     <tr>
                         <th>Block ID</th>
                         <th>Student Count</th>
@@ -36,7 +32,7 @@
                     <td th:text="${block.value.nonConflictingCombinations}"></td>
                     <td class="text-left-align" th:text="${block.value.courses}"></td>
                     <td>
-                        <a class="view-button" th:href="@{/viewBlock/{blockKey}(blockKey=${block.key})}">View</a>
+                        <a class="view-button" th:href="@{/viewblock/{blockKey}(blockKey=${block.key})}">View</a>
                     </td>
                 </tr>
             </table>
