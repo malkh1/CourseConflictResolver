@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Blocks</title>
-        <link rel="stylesheet" th:href="@{/blocks-styles.css}">
+        <link rel="stylesheet" type="text/css" th:href="@{/css/blocks-styles.css}">
     </head>
     <body>
         <header>
@@ -25,14 +25,14 @@
                     </tr>
                 </thead>
                 <tfoot></tfoot>
-                <tr th:each="block : ${blocks}">
-                    <td th:text="${block.key}"></td>
-                    <td th:text="${block.value.studentCount}"></td>
-                    <td th:text="${block.value.combinations}"></td>
-                    <td th:text="${block.value.nonConflictingCombinations}"></td>
-                    <td class="text-left-align" th:text="${block.value.courses}"></td>
+                <tr th:each="block: ${blocks}">
+                    <td th:text="${block.blockId}"></td>
+                    <td th:text="${block.studentCount}"></td>
+                    <td th:text="${block.combinations}"></td>
+                    <td th:text="${block.nonConflictingCombinations}"></td>
+                    <td class="text-left-align" th:text="${block.courses}"></td>
                     <td>
-                        <a class="view-button" th:href="@{/viewblock/{blockKey}(blockKey=${block.key})}">View</a>
+                        <a class="view-button" th:href="@{/{blockId}(blockId=${block.blockId})}">View</a>
                     </td>
                 </tr>
             </table>

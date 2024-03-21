@@ -10,7 +10,7 @@ import java.util.List;
 
 /**
  *
- * @author Mohammad
+ * @author Mohammad and waleed
  */
 @Repository
 public interface CourseRecordsRepository extends CrudRepository<CourseRecords, Long>{

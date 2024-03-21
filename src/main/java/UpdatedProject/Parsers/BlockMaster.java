@@ -1,6 +1,6 @@
 package UpdatedProject.Parsers;
 
-import UpdatedProject.Parsers.BlockInfo;
+import UpdatedProject.Models.BlockInfo;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.stereotype.Component;

@@ -2,7 +2,7 @@ package UpdatedProject.Services;
 
 import UpdatedProject.Models.CourseCombination;
 import UpdatedProject.Models.CourseRecords;
-import UpdatedProject.Parsers.BlockInfo;
+import UpdatedProject.Models.BlockInfo;
 import UpdatedProject.Parsers.BlockMaster;
 import UpdatedProject.Repos.CourseRecordsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,10 +21,10 @@ import java.util.stream.Collectors;
 public class BlockCombinationService {
 
     @Autowired
-    private static BlockMaster blockMaster;
+    private BlockMaster blockMaster;
 
     @Autowired
-    private static CourseRecordsRepository courseRecordsRepository;
+    private CourseRecordsRepository courseRecordsRepository;
 
     public BlockCombinationService(BlockMaster blockMaster, CourseRecordsRepository courseRecordsRepository){
         this.blockMaster = blockMaster;
@@ -35,6 +35,7 @@ public class BlockCombinationService {
 
         blockDetails.forEach((block, info) -> {
             String term = extractTermFromBlock(block);
+            info.setBlockId(block);
             List<CourseRecords> nonConflictingCourses = new ArrayList<>();
 
             int totalCombinations = 1;
@@ -43,6 +44,7 @@ public class BlockCombinationService {
                 String subj = courseCode.substring(0, 4); // Extracting SUBJ
                 String crse = courseCode.substring(4);    // Extracting CRSE
                 List<CourseRecords> sections = courseRecordsRepository.findBySubjAndCrseAndTerm(subj, crse, term);
+                
                 sections.forEach(lecture -> {
                     List<CourseRecords> labSections = courseRecordsRepository.findLabsTutorialsForLecture(subj, crse, term, lecture.getSEQ());
                     if(!labSections.isEmpty()){
