@@ -1,7 +1,8 @@
 package UpdatedProject;
 
 import UpdatedProject.Models.CourseRecords;
-import UpdatedProject.Parsers.BlockInfo;
+import UpdatedProject.Models.BlockInfo;
+import UpdatedProject.Repos.BlockInfoRepository;
 import UpdatedProject.Repos.CourseRecordsRepository;
 import UpdatedProject.Services.BlockCombinationService;
 import UpdatedProject.Services.CourseService;
@@ -27,20 +28,27 @@ public class CourseConflictResolverMain {
 
     @Autowired
     private BlockCombinationService blockCombinationService;
+    
+    @Autowired
+    private BlockInfoRepository blockRepo; 
 
     @Bean
     public CommandLineRunner run(CourseRecordsRepository repo) {
         return (args) -> {
             String dataSource = "src/main/resources/data_source.xlsx";
             List<CourseRecords> courses = courseService.importCoursesFromFile(dataSource);
-
+            
             String blockMasterPath = "src/main/resources/BlockMaster.xlsx";
-            LinkedHashMap<String, BlockInfo> blockDetails = blockCombinationService.calculateAllCombinations(blockMasterPath);
-            blockDetails.forEach((block, info) -> {
-                System.out.print(block + "   " + info.getStudentCount() + "  -  " + info.getCombinations() + "  " + info.getNonConflictingCombinations() + " - ");
-                info.getCourses().forEach(course -> System.out.print(course + " "));
-                System.out.println();
-            });
+            LinkedHashMap<String, BlockInfo> blockDetails = blockCombinationService.calculateAllCombinations(blockMasterPath);   
+            blockRepo.saveAll(blockDetails.values());
+            System.out.println("site ready");
+//            blockDetails.forEach((block, info) -> {
+//                System.out.print(block + "   " + info.getStudentCount() + "  -  " + info.getCombinations() + "  " + info.getNonConflictingCombinations() + " - ");
+//                info.getCourses().forEach(course -> System.out.print(course + " "));
+//                System.out.println();
+//                info.setBlockId(block);
+//                blockRepo.save(info);
+//            });
         };
     }
 

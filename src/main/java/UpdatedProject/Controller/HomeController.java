@@ -1,31 +1,25 @@
 package UpdatedProject.Controller;
 
-import UpdatedProject.Parsers.BlockInfo;
-import UpdatedProject.Services.BlockCombinationService;
+import UpdatedProject.Repos.BlockInfoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import java.io.IOException;
-import java.util.LinkedHashMap;
 
 @Controller
 public class HomeController {
 
-    private final BlockCombinationService blockCombinationService;
+    private final BlockInfoRepository blockRepo;
 
     @Autowired
-    public HomeController(BlockCombinationService blockCombinationService) {
-        this.blockCombinationService = blockCombinationService;
+    public HomeController(BlockInfoRepository blockRepo) {
+        this.blockRepo = blockRepo;
     }
 
     @GetMapping("/home")
     public String showBlocks(Model model) {
-        LinkedHashMap<String, BlockInfo> blocks = null;
-        try {
-            blocks = blockCombinationService.calculateAllCombinations("src/main/resources/BlockMaster.xlsx");
-        } catch (IOException ex){}
+        var blocks = blockRepo.findAll();
         model.addAttribute("blocks", blocks);
         return "blocks";
     }
