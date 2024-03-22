@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
     <head>
-        <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Blocks</title>
         <link rel="stylesheet" type="text/css" th:href="@{/css/blocks-styles.css}">
@@ -11,7 +10,7 @@
             <h1>Blocks</h1>
         </header>
         <main>
-                
+
             <table>
                 <caption class="text-left-align">List of blocks and their properties</caption>
                 <thead>
@@ -24,17 +23,19 @@
                         <th>View</th>
                     </tr>
                 </thead>
-                <tfoot></tfoot>
-                <tr th:each="block: ${blocks}">
-                    <td th:text="${block.blockId}"></td>
-                    <td th:text="${block.studentCount}"></td>
-                    <td th:text="${block.combinations}"></td>
-                    <td th:text="${block.nonConflictingCombinations}"></td>
-                    <td class="text-left-align" th:text="${block.courses}"></td>
-                    <td>
-                        <a class="view-button" th:href="@{/{blockId}(blockId=${block.blockId})}">View</a>
-                    </td>
-                </tr>
+
+                <tbody>
+                    <tr th:each="block: ${blocks}">
+                        <td th:text="${block.blockId}"></td>
+                        <td th:text="${block.studentCount}"></td>
+                        <td th:text="${block.combinations}"></td>
+                        <td th:text="${block.nonConflictingCombinations}"></td>
+                        <td class="text-left-align" th:text="${block.courses}"></td>
+                        <td>
+                            <a class="view-button" th:href="@{/blockview/{blockId}(blockId=${block.blockId})}">View</a>
+                        </td>
+                    </tr>
+                </tbody>
             </table>
         </main>
 

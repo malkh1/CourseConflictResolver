@@ -3,6 +3,7 @@ package UpdatedProject.Models;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,9 +15,11 @@ public class BlockInfo {
     private Long Id;
     private String blockId;
     private String studentCount;
-    private List<String> courses;
+    public List<String> courses;
     private int combinations;
     private int nonConflictingCombinations;
+    private int earliestClass;
+    private int latestClass;
 
     public BlockInfo() {
         super();
@@ -27,6 +30,7 @@ public class BlockInfo {
         this.courses = new ArrayList<>();
     }
 
+    
     public String getStudentCount() {
         return studentCount;
     }
@@ -65,5 +69,21 @@ public class BlockInfo {
 
     public void setId(Long Id) {
         this.Id = Id;
+    }
+
+    public int getEarliestClass() {
+        return earliestClass;
+    }
+
+    public void setEarliestClass(int earliestClass) {
+        this.earliestClass = earliestClass;
+    }
+
+    public int getLatestClass() {
+        return latestClass;
+    }
+
+    public void setLatestClass(int latestClass) {
+        this.latestClass = latestClass;
     }
 }
