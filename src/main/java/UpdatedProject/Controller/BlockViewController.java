@@ -1,11 +1,12 @@
 package UpdatedProject.Controller;
 import UpdatedProject.Models.BlockInfo;
-import UpdatedProject.Repos.CourseRecordsRepository;
+import UpdatedProject.Repos.BlockInfoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  *
@@ -15,20 +16,22 @@ import org.springframework.web.bind.annotation.PathVariable;
  * @author mohammad and waleed
  */
 @Controller
+@RequestMapping(value = "/blockview")
 public class BlockViewController {
     
-    private final CourseRecordsRepository repo;
+    private final BlockInfoRepository blockRepo;
     
     @Autowired
-    public BlockViewController(CourseRecordsRepository repo) {
-        this.repo = repo;
+    public BlockViewController(BlockInfoRepository blockRepo) {
+        this.blockRepo = blockRepo;
         
     }
     
     @GetMapping("/{blockId}")
     public String showBlockView(@PathVariable String blockId, Model model) {
-        BlockInfo block;
+        BlockInfo block = blockRepo.findByBlockId(blockId);
         model.addAttribute("blockId",blockId);
+        model.addAttribute("block",block);
         return "blockview";
     }
 }
